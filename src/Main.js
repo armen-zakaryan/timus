@@ -1,6 +1,7 @@
 requirejs.config({
     paths: {
-        'jquery': 'lib/jquery-1.11.0.min'
+        'jquery': '../node_modules/jquery/dist/jquery.min',
+        'lodash': '../node_modules/lodash/dist/lodash.min'
     }
 });
 
