@@ -1,0 +1,26 @@
+{
+  "name": "timus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/armen-zakaryan/timus.git"
+  },
+  "author": "Armen Zakaryan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/armen-zakaryan/timus/issues"
+  },
+  "homepage": "https://github.com/armen-zakaryan/timus",
+  "dependencies": {
+    "body-parser": "^1.9.2",
+    "consolidate": "^0.10.0",
+    "express": "^4.10.2",
+    "request": "^2.48.0"
+  }
+}
