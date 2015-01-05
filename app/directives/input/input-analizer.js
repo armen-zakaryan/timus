@@ -10,7 +10,10 @@ define(['angular', 'directives', 'jquery', 'lodash'], function(angualar, directi
                 var matchRoundBrakets = new RegExp(/\(([^)]+)\)/g);
                 var range = /[0-9]+(\s)?[!=><]+(\s)?[0-9]+/g;
                 //Matches something like that   1 ≤ n ≤ 9
-                var cool = /[0-9]+(\s)?[!=><≤]+(\s)?[a-zA-Z, ]+(\s)?[!=><≤]+(\s)?[0-9]+/g;
+                //  1 < x,y  ||  1 < x,v,y > 78 ||  x,y > 90 
+                //var cool = /[0-9]+(\s)?[!=><≤>≥]+(\s)?[a-zA-Z, ]+(\s)?[!=><≤>≥]+(\s)?[0-9]+/g;
+                var cool = /[0-9\s]+(\s)?[!=><≤>≥]+(\s)?[a-zA-Z,]([a-zA-Z0-9,\s]+)?(\s)?([!=><≤>≥]+(\s)?[0-9\s]+)?/g;
+
                 var resultJson;
                 var index = 0;
 
@@ -71,12 +74,15 @@ define(['angular', 'directives', 'jquery', 'lodash'], function(angualar, directi
 
                 scope.$watch('resp', function() {
                     var input = $(scope.resp).find('h3:contains("Input")').next();
-                    $("#input").append(input);
+
+                    $("#input").html(input);
                     initResultJson();
 
                     //Geting the text
                     input = input.text().trim();
-
+                    var arr = input.match(cool);
+                    console.log(arr)
+                    /*
                     var inputArr = input.split(" ");
                     _.each(inputArr, function(token, index, array) {
                         if (uperCaseStart.exec(token) != null || characters.exec(token) != null) {
@@ -87,8 +93,9 @@ define(['angular', 'directives', 'jquery', 'lodash'], function(angualar, directi
                         typeAnalizer[token] && typeAnalizer[token](index, array);
 
                     });
+                    */
 
-                    getRanges(input);
+                    //getRanges(input);
                     scope.resultJson = resultJson;
                 });
             },
