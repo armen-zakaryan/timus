@@ -1,0 +1,201 @@
+define([], [{
+    id: 0,
+    categoryID: 0,
+    serviceID: 0
+}, {
+    id: 1,
+    categoryID: 0,
+    serviceID: 1
+}, {
+    id: 2,
+    categoryID: 0,
+    serviceID: 2
+}, {
+    id: 3,
+    categoryID: 0,
+    serviceID: 3
+}, {
+    id: 4,
+    categoryID: 0,
+    serviceID: 4
+}, {
+    id: 5,
+    categoryID: 0,
+    serviceID: 5
+}, {
+    id: 6,
+    categoryID: 0,
+    serviceID: 6
+}, {
+    id: 7,
+    categoryID: 0,
+    serviceID: 7
+}, {
+    id: 8,
+    categoryID: 0,
+    serviceID: 8
+}, {
+    id: 9,
+    categoryID: 0,
+    serviceID: 9
+}, {
+    id: 10,
+    categoryID: 10,
+    serviceID: 0
+}, {
+    id: 11,
+    categoryID: 0,
+    serviceID: 11
+}, {
+    id: 12,
+    categoryID: 0,
+    serviceID: 12
+}, {
+    id: 13,
+    categoryID: 0,
+    serviceID: 13
+}, {
+    id: 14,
+    categoryID: 0,
+    serviceID: 14
+}, {
+    id: 15,
+    categoryID: 0,
+    serviceID: 15
+}, {
+    id: 16,
+    categoryID: 0,
+    serviceID: 16
+}, {
+    id: 17,
+    categoryID: 1,
+    serviceID: 0
+}, {
+    id: 18,
+    categoryID: 1,
+    serviceID: 5
+}, {
+    id: 19,
+    categoryID: 1,
+    serviceID: 6
+}, {
+    id: 20,
+    categoryID: 1,
+    serviceID: 7
+}, {
+    id: 21,
+    categoryID: 1,
+    serviceID: 12
+}, {
+    id: 22,
+    categoryID: 2,
+    serviceID: 0
+}, {
+    id: 23,
+    categoryID: 2,
+    serviceID: 10
+}, {
+    id: 24,
+    categoryID: 2,
+    serviceID: 14
+}, {
+    id: 25,
+    categoryID: 2,
+    serviceID: 16
+}, {
+    id: 26,
+    categoryID: 3,
+    serviceID: 0
+}, {
+    id: 27,
+    categoryID: 3,
+    serviceID: 1
+}, {
+    id: 28,
+    categoryID: 3,
+    serviceID: 2
+}, {
+    id: 29,
+    categoryID: 3,
+    serviceID: 4
+}, {
+    id: 30,
+    categoryID: 3,
+    serviceID: 8
+}, {
+    id: 31,
+    categoryID: 3,
+    serviceID: 9
+}, {
+    id: 32,
+    categoryID: 3,
+    serviceID: 10
+}, {
+    id: 33,
+    categoryID: 4,
+    serviceID: 0
+}, {
+    id: 34,
+    categoryID: 4,
+    serviceID: 12
+}, {
+    id: 35,
+    categoryID: 4,
+    serviceID: 13
+}, {
+    id: 36,
+    categoryID: 4,
+    serviceID: 14
+}, {
+    id: 37,
+    categoryID: 4,
+    serviceID: 15
+}, {
+    id: 38,
+    categoryID: 4,
+    serviceID: 16
+}, {
+    id: 39,
+    categoryID: 5,
+    serviceID: 0
+}, {
+    id: 40,
+    categoryID: 5,
+    serviceID: 3
+}, {
+    id: 41,
+    categoryID: 5,
+    serviceID: 11
+}, {
+    id: 42,
+    categoryID: 5,
+    serviceID: 17
+}, {
+    id: 43,
+    categoryID: 6,
+    serviceID: 0
+}, {
+    id: 44,
+    categoryID: 6,
+    serviceID: 5
+}, {
+    id: 45,
+    categoryID: 6,
+    serviceID: 6
+}, {
+    id: 46,
+    categoryID: 6,
+    serviceID: 8
+}, {
+    id: 47,
+    categoryID: 6,
+    serviceID: 9
+}, {
+    id: 48,
+    categoryID: 6,
+    serviceID: 12
+}, {
+    id: 49,
+    categoryID: 6,
+    serviceID: 16
+}]);

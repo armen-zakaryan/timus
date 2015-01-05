@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="timusAnalizer" class="no-js">
     <head>
         <title>Timus Analizer</title>
-	   <script data-main="src/Main" src="node_modules/requirejs/require.js"></script>
+        <link rel="stylesheet" href="http://css-spinners.com/css/spinner/throbber.css" type="text/css">
     </head>
-    <body>
-        <!--h1 id="timus">Hello Timus!</h1-->
-        <input id="url"/>
-        <div>
-        	<h1> Problem </h1>
-        	<div id="content"></div>
-        </div>
-        <button id="load"> Load </button>
+    <body ng-controller="RootCtrl">
+        
+        <input ng-model="url" />
+        <button style="display:inline-block;"ng-click="loadPage(url)"> Load </button>
+        <span style="position: absolute;">
+            <div ng-class="{throbber:loading}" style="font-size: 5px;"></div>
+        </span> 
         <br>
-        <div id="text"></div>
-        <hr>
-        <div id="input"></div>
-        <hr>
-        <div id="output"></div>
 
+        <h4 style="text-align:center;">Input</h4>
+        <input-analizer></input-analizer>
 
+        <h4 style="text-align:center;">Output</h4>
+        <output-analizer></output-analizer>
+        
+        <script data-main="app/main" src="node_modules/requirejs/require.js"></script>
     </body>
 </html>
