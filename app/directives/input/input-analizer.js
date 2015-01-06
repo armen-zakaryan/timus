@@ -5,27 +5,107 @@ define(['angular', 'directives', 'jquery', 'lodash'], function(angualar, directi
         return {
             restrict: 'E',
             link: function(scope, element, attrs) {
+                var rangMatchRegExp = /[0-9\s]+(\s)?[!=><≤>≥]+(\s)?[a-zA-Z,]([a-zA-Z0-9,\s]+)?(\s)?([!=><≤>≥]+(\s)?[0-9\s]+)?/g,
+                    // usefull split(/and|,|integers|doubles|strings|integer|double|string| /g)
+                    //typeMatchRegExp = /integer(s)?\s[A-Za-z]([A-Za-z\d])+((,(\s)?[A-Za-z]([A-Za-z\d])+)+)?(\sand\s[A-Za-z]([A-Za-z\d])+)?/g,
+                    //typeMatchRegExp = /integer(s)?\s[A-Za-z]([^,.]+)?((,(\s)?[A-Za-z]([^,.]+)?)+)?(\sand\s[A-Za-z]([A-Za-z\d]+)?)?/g,
+                    //typeMatchRegExp = "(s)?\\s[A-Za-z]([^,.]+)?((,(\\s)?[A-Za-z]([^,.]+)?)+)?(\\sand\\s[A-Za-z]([A-Za-z\\d]+)?)?",
+                    typeMatchRegExp = "(s)?\\s[A-Za-z]([^,.]+)?((,(\\s)?[A-Za-z]([^,.]+)?)+)?(\\sand\\s[A-Za-z]([A-Za-z\\d]+)?)?",
+                    resultJson;
+
+                function initResultJson() {
+                    resultJson = {
+                        integer: {},
+                        double: {},
+                        string: {},
+                        range: {},
+                        variables: {}
+                    };
+                }
+
+                function matchAllRangies(txt) {
+                    var arr = txt.match(rangMatchRegExp),
+                        fromDigit,
+                        toDigit,
+                        varName;
+
+                    _.each(arr, function(element, index) {
+                        / /
+                        element.match(/([A-Za-z](\d+)?(,)?(\s)?)+/)[0].split(',')
+
+                        varName = element.match(/([A-Za-z](\d+)?(,)?(\s)?)+/);
+                        fromDigit = element.match(/^\d+/);
+                        toDigit = element.match(/(\d(\s)?)+$/);
+
+                        fromDigit = fromDigit && fromDigit[0] && fromDigit[0].replace(/\s+/g, "");
+                        toDigit = toDigit && toDigit[0] && toDigit[0].replace(/\s+/g, "");
+
+                        varName = varName && varName[0].split(',');
+                        if (varName) {
+                            _.each(varName, function(element) {
+                                resultJson.range[element.replace(/\s+/g, "")] = {
+                                    from: fromDigit,
+                                    to: toDigit
+                                }
+                            });
+                        }
+
+                    });
+                }
+
+                function matchAllTypes(txt, type) {
+                    var result = txt.match(new RegExp(type + typeMatchRegExp, 'g'));
+                    console.log('matched', result)
+
+                    if (result) {
+                        _.each(result, function(element) {
+                            var el = element.replace(/and|integers|doubles|strings|integer|double|string|/g, '');
+                            el = el.match(/[A-Za-z]([A-Za-z\d]+)?/g);
+                            if (el) {
+                                _.each(el, function(variable) {
+                                    resultJson[type][variable] = variable;
+                                });
+                            }
+                        });
+                    }
+                    //console.log('kkk', result);
+
+                }
+
+                function joinTypeWithRange() {
+                    var makeObjectAddToVariables = function(type, index, value) {
+                        resultJson['variables'][index] = {
+                            name: index,
+                            type: type,
+                            range: {
+                                from: value.from,
+                                to: value.to
+                            }
+                        }
+                        delete resultJson['range'][index];
+                        delete resultJson[type][index];
+                    };
+                    _.forEach(resultJson.range, function(value, index) {
+                        if (resultJson['integer'][index]) {
+                            makeObjectAddToVariables('integer', index, value);
+                        } else if (resultJson['double'][index]) {
+                            makeObjectAddToVariables('double', index, value);
+                        } else if (resultJson['string'][index]) {
+                            makeObjectAddToVariables('string', index, value);
+                        }
+                    });
+                }
+
+
+                /*
+                var index = 0;
                 var uperCaseStart = new RegExp("^[A-Z][a-z]*");
                 var characters = new RegExp("^[a-z]$");
                 var matchRoundBrakets = new RegExp(/\(([^)]+)\)/g);
                 var range = /[0-9]+(\s)?[!=><]+(\s)?[0-9]+/g;
-                //Matches something like that   1 ≤ n ≤ 9
-                //  1 < x,y  ||  1 < x,v,y > 78 ||  x,y > 90 
-                //var cool = /[0-9]+(\s)?[!=><≤>≥]+(\s)?[a-zA-Z, ]+(\s)?[!=><≤>≥]+(\s)?[0-9]+/g;
-                var cool = /[0-9\s]+(\s)?[!=><≤>≥]+(\s)?[a-zA-Z,]([a-zA-Z0-9,\s]+)?(\s)?([!=><≤>≥]+(\s)?[0-9\s]+)?/g;
+*/
 
-                var resultJson;
-                var index = 0;
-
-                function initResultJson() {
-                    resultJson = {
-                        int: {},
-                        double: {},
-                        string: {},
-                        range: []
-                    };
-                }
-
+                /*
                 function fillPluralTypes(index, array, type) {
                     while (array[++index] !== 'and') {
                         resultJson[type][array[index]] = {};
@@ -71,6 +151,7 @@ define(['angular', 'directives', 'jquery', 'lodash'], function(angualar, directi
                     }
                 }
 
+*/
 
                 scope.$watch('resp', function() {
                     var input = $(scope.resp).find('h3:contains("Input")').next();
@@ -80,8 +161,20 @@ define(['angular', 'directives', 'jquery', 'lodash'], function(angualar, directi
 
                     //Geting the text
                     input = input.text().trim();
-                    var arr = input.match(cool);
-                    console.log(arr)
+                    matchAllRangies(input);
+
+                    matchAllTypes(input, 'integer');
+                    matchAllTypes(input, 'double');
+                    matchAllTypes(input, 'string');
+
+
+                    joinTypeWithRange();
+
+
+
+
+
+
                     /*
                     var inputArr = input.split(" ");
                     _.each(inputArr, function(token, index, array) {
