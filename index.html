@@ -6,12 +6,13 @@
     </head>
     <body ng-controller="RootCtrl">
         
-        <input ng-model="url" />
-        <button style="display:inline-block;"ng-click="loadPage(url)"> Load </button>
-        <span style="position: absolute;">
-            <div ng-class="{throbber:loading}" style="font-size: 5px;"></div>
-        </span> 
-        <br>
+        <form ng-submit="loadPage(url)">
+            <input type="text" ng-model="url" name="text" />
+            <input type="submit" id="submit" value="Load" />
+            <span style="position: absolute;padding-left:10px;">
+                <div ng-class="{throbber:loading}" style="font-size: 5px;"></div>
+            </span> 
+        </form>
 
         <h4 style="text-align:center;">Input</h4>
         <input-analizer></input-analizer>
