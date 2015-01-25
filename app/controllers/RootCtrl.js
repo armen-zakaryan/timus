@@ -5,13 +5,15 @@ define(['controllers', 'services/PageSvc'], function (controllers) {
 
             $scope.loadPage = function (url) {
                 if (url) {
-                    url = url.match(/\d{4}/g);
+                    url = url.match(/^\d{4}$/);
                     if (!url) {
                         alert("INVALID URL");
                         return;
                     }
+                    $scope.problemNumber = url[0];
                     url = config.timus_base_url + url[0];
                 } else {
+                    $scope.problemNumber = config.timus_default;
                     url = config.timus_base_url + config.timus_default;
                 }
                 $scope.loading = true;
