@@ -1,8 +1,8 @@
 'use strict';
 
-define(['angular', 'directives', 'jquery', 'lodash', 'services/ArrayFinderSvc'], function (angualar, directives, $, _) {
-    directives.directive('inputAnalizer', ['ArrayFinderSvc',
-        function (ArrayFinderSvc) {
+define(['angular', 'directives', 'jquery', 'lodash', 'services/ArrayFinderSvc', 'services/Match1567'], function (angualar, directives, $, _) {
+    directives.directive('inputAnalizer', ['ArrayFinderSvc', 'Match1567',
+        function (ArrayFinderSvc, Match1567) {
             return {
                 restrict: 'E',
                 link: function (scope, element, attrs) {
@@ -20,11 +20,12 @@ define(['angular', 'directives', 'jquery', 'lodash', 'services/ArrayFinderSvc'],
                     function initResultJson() {
                         resultJson = {
                             typeMatchForSpecialCases: {},
-                            arrays: {},
                             integer: {},
                             double: {},
                             string: {},
-                            range: {},
+                            range: {
+                                spacialCases : []
+                            },
                             variables: {}
                         };
                     }
@@ -144,6 +145,8 @@ define(['angular', 'directives', 'jquery', 'lodash', 'services/ArrayFinderSvc'],
 
 
                             ArrayFinderSvc.find(resultJson);
+
+                            Match1567.find(resultJson, input);
 
                             scope.resultJson = resultJson;
                         }

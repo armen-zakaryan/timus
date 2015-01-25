@@ -4,7 +4,8 @@ define([], function () {
     return {
         DEVELOPMENT: {
             timus_base_url: 'http://acm.timus.ru/problem.aspx?space=1&num=',
-            timus_default: 2001 //1401
+            timus_default: 1567, //1401,
+            possibleTypes: ['string', 'integer', 'double', 'word']
         },
 
         PRODUCTION: {
