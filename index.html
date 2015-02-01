@@ -2,23 +2,31 @@
 <html lang="en" ng-app="timusAnalizer" class="no-js">
     <head>
         <title>Timus Analizer</title>
+        <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="app/css/style.css" type="text/css">
         <link rel="stylesheet" href="http://css-spinners.com/css/spinner/throbber.css" type="text/css">
     </head>
     <body ng-controller="RootCtrl">
         
-        <form ng-submit="loadPage(url)">
-            <input type="text" ng-model="url" name="text" />
-            <input type="submit" id="submit" value="Load" />
-            <span style="position: absolute;padding-left:10px;">
-                <div ng-class="{throbber:loading}" style="font-size: 5px;"></div>
-            </span> 
-        </form>
+        <div class="container">
+            <form ng-submit="loadPage(url)">
+                <input type="text" ng-model="url" name="text" />
+                <input type="submit" id="submit" value="Load" />
+                <span style="position: absolute;padding-left:10px;">
+                    <div ng-class="{throbber:loading}" style="font-size: 5px;"></div>
+                </span> 
+            </form>
 
-        <h4 style="text-align:center;">Input</h4>
-        <input-analizer></input-analizer>
+            <div class="row">
+                <input-analizer></input-analizer>
+            </div>
 
-        <h4 style="text-align:center;">Output</h4>
-        <output-analizer></output-analizer>
+            <div class="row">
+                <h4 style="text-align:center;">Output</h4>
+                <output-analizer></output-analizer>
+            </div>
+        
+        </div>
         
         <script data-main="app/main" src="node_modules/requirejs/require.js"></script>
     </body>

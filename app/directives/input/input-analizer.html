@@ -1,3 +1,21 @@
-<h4 ng-bind="problemNumber"></h4>
-<div id="input"></div>
-<pre>{{ resultJson|json }}</pre>
+<h4 style="text-align:center;">Input</h4>
+<div>
+	<h4 ng-bind="problemNumber"></h4>
+	<div class="input-txt" ng-bind="inputText"></div>
+	<div>
+		<div class="input-data">
+			<pre>{{ resultJson|json }}</pre>
+		</div>
+		<div class="input-filtered-data">
+			<button class="btn btn-default" ng-click="makeWordsCountSectionVisible()" >
+				<span ng-if="!isWordsCountVisible" ng-bind="'show '"></span>
+				<span ng-if="isWordsCountVisible" ng-bind="'hide '"></span> word count</button>
+			<div ng-show="isWordsCountVisible" class="pull-right">
+				filter By key: <input ng-model="filterKey" />
+			</div>
+			<div ng-show="isWordsCountVisible" class="row count-words-part">
+				<div><pre>{{countedWords.filteredData | json}}</pre></div>
+			</div>
+		</div>
+	</div>
+</div>

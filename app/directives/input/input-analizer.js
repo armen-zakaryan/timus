@@ -1,8 +1,8 @@
 'use strict';
 
-define(['angular', 'directives', 'jquery', 'lodash', 'services/ArrayFinderSvc', 'services/Match1567'], function (angualar, directives, $, _) {
-    directives.directive('inputAnalizer', ['ArrayFinderSvc', 'Match1567',
-        function (ArrayFinderSvc, Match1567) {
+define(['angular', 'directives', 'jquery', 'lodash', 'services/ArrayFinderSvc', 'services/Match1567', 'services/PropertyReapeatCounter'], function (angualar, directives, $, _) {
+    directives.directive('inputAnalizer', ['config', 'ArrayFinderSvc', 'Match1567', 'PropertyReapeatCounter',
+        function (config, ArrayFinderSvc, Match1567, PropertyReapeatCounter) {
             return {
                 restrict: 'E',
                 link: function (scope, element, attrs) {
@@ -14,8 +14,8 @@ define(['angular', 'directives', 'jquery', 'lodash', 'services/ArrayFinderSvc', 
                         //typeMatchRegExp = "(s)?\\s[A-Za-z]([^,.]+)?((,(\\s)?[A-Za-z]([^,.]+)?)+)?(\\sand\\s[A-Za-z]([A-Za-z\\d]+)?)?",
                         typeMatchRegExpForSpecialCases = "vars\\s[^.]+",
                         typeMatchRegExp = "var\\s[A-Za-z]([A-Za-z\\d]+)?|vars\\s[A-Za-z]([^,.]+)?((,(\\s)?[A-Za-z]([^,.]+)?)+)?(\\sand\\s[A-Za-z]([A-Za-z\\d]+)?)?",
-
-                        resultJson;
+                        resultJson,
+                        input;
 
                     function initResultJson() {
                         resultJson = {
@@ -24,7 +24,7 @@ define(['angular', 'directives', 'jquery', 'lodash', 'services/ArrayFinderSvc', 
                             double: {},
                             string: {},
                             range: {
-                                spacialCases : []
+                                spacialCases: []
                             },
                             variables: {}
                         };
@@ -125,15 +125,18 @@ define(['angular', 'directives', 'jquery', 'lodash', 'services/ArrayFinderSvc', 
                         });
                     }
 
-
+                    // Scope functions
                     scope.$watch('resp', function () {
-                        var input = $(scope.resp).find('h3:contains("Input")').next();
+                        input = $(scope.resp).find('h3:contains("Input")').next();
 
                         if (input.length) {
-                            $("#input").html(input);
-                            initResultJson();
 
                             input = input.text().trim();
+                            scope.inputText = input;
+
+                            initResultJson();
+
+
                             matchAllRangies(input);
 
                             matchAllTypes(input, 'integer');
@@ -149,16 +152,21 @@ define(['angular', 'directives', 'jquery', 'lodash', 'services/ArrayFinderSvc', 
                             Match1567.find(resultJson, input);
 
                             scope.resultJson = resultJson;
+
+                            scope.countedWords = new PropertyReapeatCounter(input, config.wordsToIgnore);
+                            scope.countedWords.filterByKey(1);
                         }
-
-
-
-
-
-
-
-
                     });
+
+                    scope.$watch('filterKey', function (newKey, oldKey) {
+                        if (newKey !== oldKey) {
+                            scope.countedWords.filterByKey(newKey);
+                        }
+                    });
+
+                    scope.makeWordsCountSectionVisible = function () {
+                        scope.isWordsCountVisible = !scope.isWordsCountVisible;
+                    }
                 },
                 templateUrl: 'app/directives/input/input-analizer.html'
             };

@@ -1,0 +1,30 @@
+
+.input-txt {
+	padding: 0 0px 15px 10px;
+}
+.input-data {
+	float: left;
+	width: 40%;
+}
+.input-filtered-data {
+	float: left;
+	width: 55%;
+	margin-left: 20px;
+}
+.input-filtered-data button {
+	padding: 0px 10px;
+	margin:0;
+	font-size: 12px;
+}
+.input-filtered-data input {
+	height: 20px;
+	width: 35px;
+	border-radius: 5px;
+}
+
+.count-words-part > div {
+	padding: 10px; 
+	//float: left;
+}
+
+
