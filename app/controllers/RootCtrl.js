@@ -2,6 +2,17 @@ define(['controllers', 'services/PageSvc'], function (controllers) {
     controllers.controller('RootCtrl', ['$scope', 'PageSvc', 'config',
         function ($scope, PageSvc, config) {
 
+            String.prototype.insert = function (index, string) {
+                string = string.replace(/\<![ \r\n\t]*(--([^\-]|[\r\n]|-[^\-])*--[ \r\n\t]*)\>/g,'');
+                string = string.replace(/^\s*[\r\n]/gm, '');
+                if (index > 0) {
+                    return this.substring(0, index) + string + this.substring(index, this.length);
+                }
+                else {
+                    var txt = string + ' ' + this;
+                    return txt;   
+                }
+            };
 
             $scope.loadPage = function (url) {
                 if (url) {

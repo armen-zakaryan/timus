@@ -1,0 +1,13 @@
+<div class="word-counter">
+	<button class="btn btn-default" ng-click="makeWordsCountSectionVisible()" >
+		<span ng-if="!isWordsCountVisible" ng-bind="'show '"></span>
+		<span ng-if="isWordsCountVisible" ng-bind="'hide '"></span> word count
+	</button>
+	<div ng-show="isWordsCountVisible" class="word-counter-data-section">
+		<word-counter-item mode='Problem Statement' data="problemStatement"></word-counter-item>
+		<word-counter-item mode="Input" data="inputText"></word-counter-item>
+		<word-counter-item mode="Output" data="outputText"></word-counter-item>
+		<word-counter-item mode="Sample" data="sampleText"></word-counter-item>
+		<word-counter-item mode="ALL" data="problemStatement+inputText+outputText"></word-counter-item>
+	</div>
+</div>

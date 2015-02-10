@@ -153,20 +153,9 @@ define(['angular', 'directives', 'jquery', 'lodash', 'services/ArrayFinderSvc', 
 
                             scope.resultJson = resultJson;
 
-                            scope.countedWords = new PropertyReapeatCounter(input, config.wordsToIgnore);
-                            scope.countedWords.filterByKey(1);
                         }
                     });
 
-                    scope.$watch('filterKey', function (newKey, oldKey) {
-                        if (newKey !== oldKey) {
-                            scope.countedWords.filterByKey(newKey);
-                        }
-                    });
-
-                    scope.makeWordsCountSectionVisible = function () {
-                        scope.isWordsCountVisible = !scope.isWordsCountVisible;
-                    }
                 },
                 templateUrl: 'app/directives/input/input-analizer.html'
             };

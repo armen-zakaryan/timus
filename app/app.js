@@ -10,7 +10,10 @@ define([
     'directives',
     'controllers',
     'controllers/RootCtrl',
+    'directives/problem-statement/problem-statement',
     'directives/input/input-analizer',
+    'directives/word-counter/word-counter',
+    'directives/word-counter/word-counter-item',
     'directives/output/output-analizer'
 ], function (angular, config) {
     var app = angular.module('timusAnalizer', [

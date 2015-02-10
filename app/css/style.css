@@ -1,24 +1,54 @@
-
+.word-counter {
+	margin-top: 15px;
+}
+.word-counter > word-counter-item {
+	float: left;
+	margin-left: 5px;
+}
+.word-counter button {
+	padding: 0px 2px;
+	margin-right:5px;
+	margin-left: 0;
+	font-size: 12px;
+}
+.word-counter-data-section {
+	width: 100%;
+	margin-top: 20px;
+	height: 400px;
+}
 .input-txt {
 	padding: 0 0px 15px 10px;
 }
+input-analizer {
+	width: 20%;
+}
 .input-data {
 	float: left;
-	width: 40%;
+	width: 22%;
 }
-.input-filtered-data {
+.input-data > pre {
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+}
+.filtered-data pre {
+  overflow: auto;
+  max-height: 350px;
+  word-wrap: normal;
+  white-space: pre;
+}
+.filtered-data {
+	max-height: 150px;
 	float: left;
-	width: 55%;
+	width: 210px;
 	margin-left: 20px;
 }
-.input-filtered-data button {
-	padding: 0px 10px;
-	margin:0;
-	font-size: 12px;
+.filtered-data label {
+	font-size: 11px;
 }
-.input-filtered-data input {
+.filtered-data input {
 	height: 20px;
-	width: 35px;
+	width: 25px;
 	border-radius: 5px;
 }
 
