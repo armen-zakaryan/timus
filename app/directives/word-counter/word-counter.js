@@ -22,7 +22,7 @@ define(['angular', 'directives', 'lodash'], function (angualar, directives, _) {
                         output = $(scope.resp).find('h3:contains("Output")').next();
                         sample = $(scope.resp).find('h3:contains("Sample")').next();
                         $text = $(scope.resp).find('h3:contains("Input")').prev();
-
+                        problemStatement = '';
                         if ($text.length) {
                             while ($text.length) {
 

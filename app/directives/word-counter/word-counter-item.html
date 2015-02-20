@@ -1,8 +1,20 @@
-<div class="filtered-data">
-	<div class="pull-right">
-		filter By key: <input ng-model="filterKey" />
-	</div>	
-	<div class="row count-words-part">
-		<div><label>{{mode}}</label><pre>{{countedWords.filteredData | json}}</pre></div>
+<div class="row">
+	<a ng-click="toggle()" >
+		<label class="count-word-item-label">{{mode}}</label>
+		<span ng-if="!isVisible" class="glyphicon glyphicon-chevron-right"></span>
+		<span ng-if="isVisible" class="glyphicon glyphicon-chevron-down"></span>
+	</a>
+	<div ng-show="isVisible">
+		<div class="filtered-data">
+			<div class="pull-right">
+				filter By key: <input ng-model="filterKey" />
+			</div>	
+			<div class="row count-words-part">
+				<div><pre>{{countedWords.filteredData | json}}</pre></div>
+			</div>
+		</div>
+		<div class="words-sentances">
+		    <sentance-container data="wordsInSentance"></sentance-container>
+		</div>
 	</div>
 </div>

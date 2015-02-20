@@ -3,18 +3,20 @@
 }
 .word-counter > word-counter-item {
 	float: left;
-	margin-left: 5px;
+}
+word-counter-item .row {
+	margin: 0 !important;
 }
 .word-counter button {
-	padding: 0px 2px;
-	margin-right:5px;
-	margin-left: 0;
+	padding: 3px 8px;
+	//margin-right:5px;
+	//margin-left: 0;
 	font-size: 12px;
 }
 .word-counter-data-section {
 	width: 100%;
 	margin-top: 20px;
-	height: 400px;
+	overflow: auto;
 }
 .input-txt {
 	padding: 0 0px 15px 10px;
@@ -33,15 +35,28 @@ input-analizer {
 }
 .filtered-data pre {
   overflow: auto;
-  max-height: 350px;
+  max-height: 300px;
   word-wrap: normal;
   white-space: pre;
 }
 .filtered-data {
-	max-height: 150px;
+	max-height: 350px;
 	float: left;
-	width: 210px;
+	width: 20%;
 	margin-left: 20px;
+}
+.words-sentances {
+	width: 75%;
+	max-height: 240px; 
+	float:left;
+	left: 50px;
+	margin-left: 15px;
+}
+.sentances pre {
+  overflow: auto;
+  max-height: 325px;
+  word-wrap: normal;
+  white-space: pre;
 }
 .filtered-data label {
 	font-size: 11px;
@@ -51,10 +66,13 @@ input-analizer {
 	width: 25px;
 	border-radius: 5px;
 }
-
+.count-word-item-label {
+	font-weight: 400;
+}
 .count-words-part > div {
-	padding: 10px; 
+	margin-top: 15px;
+	padding: 10px;
+	backround: red;
 	//float: left;
 }
-
 
