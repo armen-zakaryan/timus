@@ -40,9 +40,10 @@ define(['factories', 'lodash'], function (factories, _) {
                     return filteredData;
                 }
 
-                if (ignoredElements) {
-                    text = text.replace(new RegExp(ignoredElements.join('|'), 'g'), ' ');
-                }
+                // If ignoredElements are provided then would be replaced by space
+                _.each(ignoredElements, function(ignoredElement){
+                    text = text.replace(new RegExp(ignoredElement, 'g'), ' ');
+                });
 
                 splitedText = text.split(/[\s\.\(\),]+/);
 
