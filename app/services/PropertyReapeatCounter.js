@@ -39,6 +39,10 @@ define(['factories', 'lodash'], function (factories, _) {
                     });
                     return filteredData;
                 }
+                
+                    //******* for problem 2001   *****************
+                //text = text.replace(/a1|b1|a2|b2|a3|b3/g, 'ai');
+                    //********************************************
 
                 // If ignoredElements are provided then would be replaced by space
                 _.each(ignoredElements, function(ignoredElement){
@@ -46,7 +50,7 @@ define(['factories', 'lodash'], function (factories, _) {
                 });
 
                 splitedText = text.split(/[\s\.\(\),]+/);
-
+                
                 _.each(splitedText, function (element) {
                     self.insert(element);
                 });

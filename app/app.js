@@ -16,6 +16,7 @@ define([
     'directives/word-counter/word-counter-item',
     'directives/output/output-analizer',
     'directives/sentances/sentance-container',
+    'directives/fs/export'
 ], function (angular, config) {
     var app = angular.module('timusAnalizer', [
         'ngResource',

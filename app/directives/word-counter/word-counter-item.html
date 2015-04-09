@@ -1,6 +1,7 @@
 <div class="row">
 	<a ng-click="toggle()" >
 		<label class="count-word-item-label">{{mode}}</label>
+		<export class="pull-right" ng-if="isVisible"></export>
 		<span ng-if="!isVisible" class="glyphicon glyphicon-chevron-right"></span>
 		<span ng-if="isVisible" class="glyphicon glyphicon-chevron-down"></span>
 	</a>

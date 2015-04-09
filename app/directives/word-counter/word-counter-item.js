@@ -4,17 +4,20 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
     directives.directive('wordCounterItem', ['config', 'PropertyReapeatCounter',
         function (config, PropertyReapeatCounter) {
             function matchSentanceForEachWord(text, wordsArr){
-                text = text.toLowerCase();
+                // Make lower case and replace newlines/line breaks and multy spaces with 1 spaces
+                text = text.toLowerCase().replace(/\n/g, " ").replace(/\s{2,}/g, ' ');;
                 var obj = {};
                 var splitedSentances = text.split('.');
                 _.each(wordsArr, function(word,index){
                     obj[index] = [];
                     _.each(splitedSentances, function(sentance){
-                        if(sentance.indexOf(index)>=0){
+                        // Start with Exact match end with not strict
+                        if(' '+sentance.indexOf(' '+index)>=0){
                             obj[index].push(sentance);
                         }
                     });
                 });
+               
                 return obj;
             }
 

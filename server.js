@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cons = require('consolidate');
 var request = require("request");
-
+var routes = require('./server/routes.js'); //requesting  my module routes
 
 var app = express();
 app.use(bodyParser());
@@ -20,8 +20,9 @@ app.get('/pages', function(req, res) {
         res.send(body);
     });
 
-})
+});
 
+routes.routes(app);
 
 app.listen(3000, function(req, res) {
     console.log("Server is running on port 3000");
