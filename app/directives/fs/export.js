@@ -8,13 +8,25 @@ define(['angular', 'directives', 'lodash', 'services/ExportSvc'], function(angua
                 link: function(scope, element, attrs) {
 
                     scope.export = function($event) {
+                        var selectedData = {};
                         $event.stopPropagation();
+                        
+                        _.each(scope.wordsInSentance, function(el, key){
+                           if (el.selected){
+                               selectedData[key] = el;        
+                           }  
+                        });
+
+                        if (!Object.getOwnPropertyNames(selectedData).length) {
+                            selectedData = scope.wordsInSentance;
+                        }
+
                         var data = {
                             problem: scope.$parent.$parent.problemNumber,
-                            data: scope.wordsInSentance,
+                            data: selectedData,
                             fileName: (scope.$parent.$parent.problemNumber + '_' + scope.filterKey + '_' + scope.mode).replace(/ /g, "_")        
                         }
-                        
+
                         ExportSvc.exportData(data, function(msg){
                            alert(msg);        
                         });
@@ -26,48 +38,3 @@ define(['angular', 'directives', 'lodash', 'services/ExportSvc'], function(angua
         }
     ]);
 });
-
-
-
-
-
-
-
-
-
-
-
-/*
-window.requestFileSystem(type, size, function onInitFs(fs) {
-    fs.root.getFile('/log1.txt', {create: true,exclusive: true}, function(fileEntry) {
-        debugger
-    // fileEntry.isFile === true
-    // fileEntry.name == 'log.txt'
-    // fileEntry.fullPath == '/log.txt'
-
-    }, errorHandler);
-
-
-    // Create a FileWriter object for our FileEntry (log.txt).
-    fs.root.getFile('log.txt', {create: true}, function(fileEntry) {
-
-        fs.root.getFile('log.txt', {create: false}, function(fileEntry) {
-
-            // Create a FileWriter object for our FileEntry (log.txt).
-            fileEntry.createWriter(function(fileWriter) {
-
-                fileWriter.seek(fileWriter.length); // Start write position at EOF.
-
-                // Create a new Blob and write it to log.txt.
-                var blob = new Blob(['Hello World'], {type: 'text/plain'});
-
-                fileWriter.write(blob);
-
-            }, errorHandler);
-
-        }, errorHandler);
-
-    }, errorHandler);
-}, errorHandler);
-
-*/

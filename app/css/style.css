@@ -47,16 +47,21 @@ input-analizer {
 }
 .words-sentances {
 	width: 75%;
-	max-height: 240px; 
+	max-height: 350px; 
+	overflow: scroll;
 	float:left;
 	left: 50px;
 	margin-left: 15px;
 }
+.sentances > div > div {
+	float: left;
+	padding: 15px 5px 0 0;
+}
 .sentances pre {
-  overflow: auto;
-  max-height: 325px;
-  word-wrap: normal;
-  white-space: pre;
+	overflow: auto;
+    max-height: 325px;
+    word-wrap: normal;
+    white-space: pre;
 }
 .filtered-data label {
 	font-size: 11px;

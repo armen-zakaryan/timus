@@ -1,12 +1,7 @@
 <div class="sentances">
-    <pre>{{data|json}}</pre>
-	<div ng-repeat="sentance in sentances">
-		<a ng-click="toggle()">
-			<label>{{]}</label>hhhhhhhhhhhhhhhhhhhhhhhhhh
-			<span ng-if="!isVisible" class="glyphicon glyphicon-chevron-right"></span>
-			<span ng-if="isVisible" class="glyphicon glyphicon-chevron-down"></span>
-		</a>
-		<div>
-		</div>
+	<div ng-repeat="(key, value) in data">
+		<div><input type="checkbox" ng-click="onCheck(key)"/></div>
+		<div><span>{{key}}</span></div>
+		<pre>{{ value | json }}</pre>
 	</div>
 </div>

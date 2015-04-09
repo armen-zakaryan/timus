@@ -15,6 +15,10 @@ define(['angular', 'directives', 'lodash'], function (angualar, directives, _) {
                             
                         }
                     });
+
+                    scope.onCheck = function(key){
+                        scope.data[key].selected = !scope.data[key].selected;  
+                    };
                 },
                 templateUrl: 'app/directives/sentances/sentance-container.html'
             };
