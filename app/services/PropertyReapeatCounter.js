@@ -6,7 +6,8 @@ define(['factories', 'lodash'], function (factories, _) {
         function () {
             function PropertyReapeatCounter(txt, ignoredElements) {
 
-                var text = txt.toLowerCase(),
+                // remove line breaks and uppercase characters make lower case
+                var text = txt.toLowerCase().replace(/(\r\n|\n|\r)/gm,""),
                     splitedText,
                     self = this;
                 this.data = {};
@@ -50,7 +51,6 @@ define(['factories', 'lodash'], function (factories, _) {
                 });
 
                 splitedText = text.split(/[\s\.\(\),]+/);
-                
                 _.each(splitedText, function (element) {
                     self.insert(element);
                 });
