@@ -3,6 +3,7 @@
 define([], function() {
     return {
         DEVELOPMENT: {
+            INDEXES_NAMES: 4,
             timus_base_url: 'http://acm.timus.ru/problem.aspx?space=1&num=',
             timus_default: 1409, //1567, //1401, 1409 2001
             possibleTypes: ['string', 'integer', 'double', 'word'],

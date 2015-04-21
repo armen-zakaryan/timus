@@ -5,11 +5,14 @@
 		<span ng-if="!isVisible" class="glyphicon glyphicon-chevron-right"></span>
 		<span ng-if="isVisible" class="glyphicon glyphicon-chevron-down"></span>
 	</a>
-	<div ng-show="isVisible">
+	<div class="word-counter-ietm-data-container" ng-show="isVisible">
 		<div class="filtered-data">
-			<div class="pull-right">
-				filter By key: <input ng-model="filterKey" />
-			</div>	
+			<div class="filter-by-section">
+				<label>filter By key:</label> 
+				<span class="glyphicon glyphicon-menu-left" aria-hidden="true" ng-click="changeCounter(-1)"></span>
+				<input ng-model="filterKey" />	
+				<span class="glyphicon glyphicon-menu-right" aria-hidden="true" ng-click="changeCounter(1)"></span>
+			</div>
 			<div class="row count-words-part">
 				<div><pre>{{countedWords.filteredData | json}}</pre></div>
 			</div>
@@ -17,5 +20,31 @@
 		<div class="words-sentances">
 		    <sentance-container data="wordsInSentance"></sentance-container>
 		</div>
+		<div class="table-data">
+			<label class="count-word-item-label" ng-click="toggleTable()">Array Index Table</label>
+			<span ng-if="!visible" class="glyphicon glyphicon-chevron-right"></span>
+			<span ng-if="visible" class="glyphicon glyphicon-chevron-down"></span>
+		</div>
+
+		<div class="table-data-content" ng-show="visible">
+		  <h2> Index Names Table</h2>
+		  <table class="table">
+			<thead>
+			  <tr>
+				<th>Names</th>
+				<th>Indexes</th>
+				<th>--</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr ng-repeat="row in arayNameAndIndexAnalizedData.formatedData">
+				<td>{{row.name.name}} ({{row.name.count}})</td>
+				<td>{{row.index.name}} ({{row.index.count}})</td>
+				<td></td>
+			  </tr>
+			</tbody>
+		  </table>
+		</div>
+
 	</div>
 </div>

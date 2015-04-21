@@ -1,3 +1,11 @@
+
+.container-body {
+	padding: 10px 50px 20px 50px;
+}
+.timus-row {
+	margin: 0;
+}
+
 .word-counter {
 	margin-top: 15px;
 }
@@ -35,15 +43,23 @@ input-analizer {
 }
 .filtered-data pre {
   overflow: auto;
-  max-height: 300px;
+  max-height: 290px;
   word-wrap: normal;
   white-space: pre;
 }
 .filtered-data {
 	max-height: 350px;
+	min-width: 20%;
 	float: left;
 	width: 20%;
-	margin-left: 20px;
+	margin: 15px 0 10px 15px;
+	border: 1px solid #A1C1D1;
+	border-radius: 4px;
+	padding: 0px;
+
+}
+.filter-by-section {
+	margin: 10px 10px 0 14px;
 }
 .words-sentances {
 	width: 75%;
@@ -51,7 +67,11 @@ input-analizer {
 	overflow: scroll;
 	float:left;
 	left: 50px;
-	margin-left: 15px;
+	margin-top: 15px;
+	margin-left: 25px;
+	border: 1px solid #A1C1C1;
+	border-radius: 4px;
+	padding: 10px;
 }
 .sentances > div > div {
 	float: left;
@@ -64,23 +84,56 @@ input-analizer {
     white-space: pre;
 }
 .filtered-data label {
-	font-size: 11px;
+	font-size: 15px;
+	font-weight: 100;
+	color: #C88898;
+	margin-right: 25px;
 }
+.filtered-data span {
+	font-size: 10px;
+	cursor: pointer;
+}
+
 .filtered-data input {
+	border: 1px solid #C8C8C8;
+	margin-top: 2px;
+	padding: 6px;
+	border-radius: 3px !important;
 	height: 20px;
 	width: 25px;
-	border-radius: 5px;
 }
 .count-word-item-label {
 	font-weight: 400;
+	//background: red
 }
 .count-words-part > div {
-	margin-top: 15px;
 	padding: 10px;
-	backround: red;
-	//float: left;
 }
 
-export {
+export, .table-data-content label, .table-data-content .glyphicon {
 	cursor: pointer;	
 }
+
+.word-counter-ietm-data-container {
+	float: left;
+	border: 1px solid #C8C8C8;
+	border-radius: 5px;
+	margin: 0 0 10px 0;
+	width: 100%;
+}
+
+/* Table Data Content */
+.table-data {
+	width: 95%;
+	float: left;
+	margin: 0 0 10px 30px;
+}
+.table-data-content {
+	float: left;
+	margin: 0 0 10px 30px;
+	padding: 0 10px;
+	border: 1px solid #C8C8C8;
+	border-radius: 5px;
+	border: 1px solid green;
+}
+
