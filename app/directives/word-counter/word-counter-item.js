@@ -7,9 +7,22 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
             function matchSentanceForEachWord(text, wordsArr) {
                 // Make lower case and replace newlines/line breaks and multy spaces with 1 spaces
                 text = text.toLowerCase().replace(/\n/g, " ").replace(/\s{2,}/g, ' ');
-                ;
-                var obj = {};
+                
+                var obj = {}, property;
                 var splitedSentances = text.split('.');
+                
+                for (property in wordsArr) {
+                    if (wordsArr.hasOwnProperty(property)) {
+                        obj[property] = [];
+                        _.each(splitedSentances, function(sentance) {
+                            // Start with Exact match end with not strict
+                            if (' ' + sentance.indexOf(' ' + property) >= 0) {
+                                obj[property].push(sentance);
+                            }
+                        });
+                    }
+                }
+                /*
                 _.each(wordsArr, function(word, index) {
                     obj[index] = [];
                     _.each(splitedSentances, function(sentance) {
@@ -18,7 +31,7 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
                             obj[index].push(sentance);
                         }
                     });
-                });
+                });*/
                 
                 return obj;
             }
@@ -51,7 +64,7 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
             function findIndexPair(extractedWord, tableData, sentances) {
                 var indexPair;
                 var isIndexFound = !_.every(tableData.names, function(data, index) {
-                    if (sentances[index].length === sentances[extractedWord.name].length && isEqualSentances(sentances[index], sentances[extractedWord.name])) {
+                    if (sentances[index] && sentances[index].length === sentances[extractedWord.name].length && isEqualSentances(sentances[index], sentances[extractedWord.name])) {
                         // To break the iteration since index is found
                         indexPair = {
                             location: 'names',
@@ -97,20 +110,20 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
                     maxIndex = arrOfIndexes.length;
                 }
                 for (var i = 0; i < maxIndex; i++) {
-                    if(arrOfNames.length > i){
-                        currentName = arrOfNames[i];            
+                    if (arrOfNames.length > i) {
+                        currentName = arrOfNames[i];
                     } else {
-                        currentName = {};        
+                        currentName = {};
                     }
-                    if(arrOfIndexes.length > i){
-                        currentIndex = arrOfIndexes[i];            
+                    if (arrOfIndexes.length > i) {
+                        currentIndex = arrOfIndexes[i];
                     } else {
-                        currentIndex = {};        
+                        currentIndex = {};
                     }
-                    tableData.formatedData.push({name: currentName, index: currentIndex});
+                    tableData.formatedData.push({name: currentName,index: currentIndex});
                 }
-                
-                
+            
+            
             }
 
             // constract Table from Indexes and Names
@@ -180,7 +193,7 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
                     
                     scope.$watch('data', function(newKey, oldKey) {
                         scope.filterKey = 1;
-                        if (newKey !== oldKey) {
+                        if (newKey) {
                             scope.countedWords = new PropertyReapeatCounter(scope.data, config.wordsToIgnore);
                             scope.countedWords.filterByKey(1);
                             scope.wordsInSentance = matchSentanceForEachWord(scope.data, scope.countedWords.countFilterByKey(1));
@@ -214,3 +227,14 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
         }
     ]);
 });
+
+
+function St(n, t, e) {
+    var r = -1, u = n ? n.length : 0;
+    if (t = t && typeof e == "undefined" ? t : tt(t, e, 3), typeof u == "number")
+        for (; ++r < u && false !== t(n[r], r, n); )
+            ;
+    else
+        h(n, t);
+    return n
+}

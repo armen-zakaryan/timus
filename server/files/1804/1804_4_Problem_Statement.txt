@@ -1,0 +1,28 @@
+{
+    "team": [
+        "the machinegunners women's football team has advanced to the knockout stage of the revolution cup",
+        " the cavalry team is their opponent in the first round",
+        " according to the rules, the teams must play two games, one at the machinegunners' stadium and the other at the cavalry's stadium",
+        " the team that scores more goals in the two games will advance to the next round",
+        " if the teams score the same number of goals, then the team that scores more goals at the opponent's stadium will advance",
+        " the teams have played their first game already",
+        " it is known that no team can score more than thirty goals in one game"
+    ],
+    "round": [
+        " the cavalry team is their opponent in the first round",
+        " the team that scores more goals in the two games will advance to the next round",
+        " the machinegunners want to work out an adequate tactics for the return game, and for this they need to know the following two values: the minimal number of goals they must score to get a chance to advance to the next round; the maximal number of goals they may score which leaves a chance for their opponents to advance to the next round"
+    ],
+    "score": [
+        " the team that scores more goals in the two games will advance to the next round",
+        " if the teams score the same number of goals, then the team that scores more goals at the opponent's stadium will advance",
+        " the machinegunners want to work out an adequate tactics for the return game, and for this they need to know the following two values: the minimal number of goals they must score to get a chance to advance to the next round; the maximal number of goals they may score which leaves a chance for their opponents to advance to the next round",
+        " it is known that no team can score more than thirty goals in one game"
+    ],
+    "goals": [
+        " the team that scores more goals in the two games will advance to the next round",
+        " if the teams score the same number of goals, then the team that scores more goals at the opponent's stadium will advance",
+        " the machinegunners want to work out an adequate tactics for the return game, and for this they need to know the following two values: the minimal number of goals they must score to get a chance to advance to the next round; the maximal number of goals they may score which leaves a chance for their opponents to advance to the next round",
+        " it is known that no team can score more than thirty goals in one game"
+    ]
+}

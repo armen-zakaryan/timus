@@ -1,0 +1,20 @@
+{
+    "little": [
+        " now little boy's parents brought home a chocolate bar, and, sure enough, karlsson is here already and wants to eat it",
+        " however, this time little boy has firmly decided that not a single piece of chocolate will go to this glutton",
+        " little boy wants to use karlsson's addiction to the games of chance and suggests playing the following game"
+    ],
+    "karlsson": [
+        "little boy is mad at karlsson, who ate all the sweets in the flat and even went to the neighbours to eat their sweets too",
+        " now little boy's parents brought home a chocolate bar, and, sure enough, karlsson is here already and wants to eat it",
+        " little boy wants to use karlsson's addiction to the games of chance and suggests playing the following game",
+        " but karlsson is smart enough! he immediately understood who should make the first turn in order for karlsson to win, assuming that players take optimal turns"
+    ],
+    "chocolate": [
+        " now little boy's parents brought home a chocolate bar, and, sure enough, karlsson is here already and wants to eat it",
+        " however, this time little boy has firmly decided that not a single piece of chocolate will go to this glutton",
+        " a chocolate bar can be considered as a rectangle of square “units” arranged in m rows and n columns and separated by “lines”",
+        " at his turn, a player must take one piece of chocolate and split it into two along one of the lines",
+        " if a player can't make a legal move (which happens when all pieces of chocolate consist of a single unit square), he loses, and the winner takes all the chocolate"
+    ]
+}
