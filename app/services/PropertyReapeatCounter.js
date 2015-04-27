@@ -7,20 +7,47 @@ define(['factories', 'lodash'], function(factories, _) {
             function PropertyReapeatCounter(txt, ignoredElements) {
 
                 // remove line breaks and uppercase characters make lower case
-                var text = txt.toLowerCase().replace(/(\r\n|\n|\r)/gm, ""), 
+                var text = txt.toLowerCase().replace(/(\r\n|\n|\r)/gm, " "), 
                 splitedText, 
                 self = this;
                 this.data = {};
                 this.filteredData = {};
                 
+                function existWithout(value) {
+                    // handle  x's and xs cases
+                    if (/'s$/.test(value) && self.data[value.substring(0, value.length - 2)]) {
+                        return value.substring(0, value.length - 2);
+                    } else if (/\Ss$/.test(value) && self.data[value.substring(0, value.length - 1)]) {
+                        return value.substring(0, value.length - 1);
+                    } else {
+                        return false;
+                    }
+                }
+
+                function existWith(value) {
+                    if ( self.data[value + "'s"] ) {
+                        return true;
+                    } else if ( self.data[value + "s"] ) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+                
                 this.insert = function(value) {
+                    var existed;
                     if (!value) {
                         return;
                     }
+                    
                     if (self.data[value]) {
                         self.data[value]++;
-                    } else
-                        self.data[value] = 1;
+                    } else if ( existed = existWithout(value) ) {
+                        self.data[existed]++;
+                    } else if (existed = existWith(value) ){
+                        self.data[value] = self.data[existed] + 1;
+                        delete self.data[existed];
+                    } else self.data[value] = 1;
                 }
                 this.filterByKey = function(key) {
                     this.filteredData = {};
