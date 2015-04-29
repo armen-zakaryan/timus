@@ -194,7 +194,7 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
                     scope.$watch('data', function(newKey, oldKey) {
                         scope.filterKey = 1;
                         if (newKey) {
-                            scope.countedWords = new PropertyReapeatCounter(scope.data, config.wordsToIgnore);
+                            scope.countedWords = new PropertyReapeatCounter(scope.data, config.wordsToIgnore, scope.mode);
                             scope.countedWords.filterByKey(1);
                             scope.wordsInSentance = matchSentanceForEachWord(scope.data, scope.countedWords.countFilterByKey(1));
                             scope.arayNameAndIndexAnalizedData = constractArrayIndexNameTable(scope.countedWords, scope.wordsInSentance);

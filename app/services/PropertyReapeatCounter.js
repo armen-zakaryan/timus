@@ -4,7 +4,7 @@ define(['factories', 'lodash'], function(factories, _) {
     factories.factory('PropertyReapeatCounter', [
         
         function() {
-            function PropertyReapeatCounter(txt, ignoredElements) {
+            function PropertyReapeatCounter(txt, ignoredElements, mode) {
 
                 // remove line breaks and uppercase characters make lower case
                 var text = txt.toLowerCase().replace(/(\r\n|\n|\r)/gm, " "), 
@@ -23,12 +23,12 @@ define(['factories', 'lodash'], function(factories, _) {
                         return false;
                     }
                 }
-
+                
                 function existWith(value) {
-                    if ( self.data[value + "'s"] ) {
-                        return true;
-                    } else if ( self.data[value + "s"] ) {
-                        return true;
+                    if (self.data[value + "'s"]) {
+                        return value + "'s";
+                    } else if (self.data[value + "s"]) {
+                        return value + "s";
                     } else {
                         return false;
                     }
@@ -42,12 +42,13 @@ define(['factories', 'lodash'], function(factories, _) {
                     
                     if (self.data[value]) {
                         self.data[value]++;
-                    } else if ( existed = existWithout(value) ) {
+                    } else if (existed = existWithout(value)) {
                         self.data[existed]++;
-                    } else if (existed = existWith(value) ){
+                    } else if (existed = existWith(value)) {
                         self.data[value] = self.data[existed] + 1;
                         delete self.data[existed];
-                    } else self.data[value] = 1;
+                    } else
+                        self.data[value] = 1;
                 }
                 this.filterByKey = function(key) {
                     this.filteredData = {};
