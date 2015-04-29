@@ -227,14 +227,3 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
         }
     ]);
 });
-
-
-function St(n, t, e) {
-    var r = -1, u = n ? n.length : 0;
-    if (t = t && typeof e == "undefined" ? t : tt(t, e, 3), typeof u == "number")
-        for (; ++r < u && false !== t(n[r], r, n); )
-            ;
-    else
-        h(n, t);
-    return n
-}

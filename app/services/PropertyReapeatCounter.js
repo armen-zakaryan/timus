@@ -86,7 +86,7 @@ define(['factories', 'lodash'], function(factories, _) {
                     text = text.replace(new RegExp(ignoredElement, 'g'), ' ');
                 });
                 
-                splitedText = text.split(/[\s\.\(\),]+/);
+                splitedText = text.split(/[\s\.\"\(\),]+/);
                 _.each(splitedText, function(element) {
                     self.insert(element);
                 });

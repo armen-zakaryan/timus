@@ -5,7 +5,7 @@ define([], function() {
         DEVELOPMENT: {
             INDEXES_NAMES: 6,
             timus_base_url: 'http://acm.timus.ru/problem.aspx?space=1&num=',
-            timus_default: 1639, //1348, //1567, //1401, 1409 2001
+            timus_default: 1572, //1348, //1567, //1401, 1409 2001
             possibleTypes: ['string', 'integer', 'double', 'word'],
             wordsToIgnore: [ ' length ', ' length\\.', 'i\\.e\\. ',
                 '<', '>', '=', '!=', '==', '≥', '≤', '-', ' — ', ' _ ', ';', ' is ', ' are ', ' has ', ' have ', ' had ', ' was ', ' were ', ' in ',
