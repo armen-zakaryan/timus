@@ -45,6 +45,33 @@
 			</tbody>
 		  </table>
 		</div>
+		<div class="table-data-content" ng-show="visible">
+		  <h2> Index Grouping with Names</h2>
+		  <table class="table">
+			<thead>
+			  <tr>
+				<th>Names</th>
+				<th>Indexes</th>
+				<th>--</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr ng-repeat="row in arayNameAndIndexAnalizedData.groupOfIndexes">
+				<td>
+					<div ng-repeat="rowItem in row.groupName">
+					    {{rowItem.name + '(' + rowItem.count +')' }}
+					</div>
+				</td>
+				<td>
+					<div ng-repeat="rowItem in row.groupItems">
+					    {{rowItem.name + '(' + rowItem.count +')' }}
+					</div>
+				</td>
+				<td></td>
+			  </tr>
+			</tbody>
+		  </table>
+		</div>
 
 	</div>
 </div>

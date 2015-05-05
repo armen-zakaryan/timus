@@ -82,6 +82,12 @@ define(['factories', 'lodash'], function(factories, _) {
                 //text = text.replace(/a1|b1|a2|b2|a3|b3/g, 'ai');
                 //********************************************
 
+
+                // If in mode Sample remove words "input" "output"                     
+                if (mode === "Sample") {
+                    text = text.replace(/input|output/g, '');
+                }
+
                 // If ignoredElements are provided then would be replaced by space
                 _.each(ignoredElements, function(ignoredElement) {
                     text = text.replace(new RegExp(ignoredElement, 'g'), ' ');

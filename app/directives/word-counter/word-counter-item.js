@@ -60,9 +60,41 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
                 }
             }
 
+            // count the number of similar sentances
+            function countEqualSentances(sentance1, sentance2) {
+                var s1, s2;
+                if (sentance1 && sentance2) {
+                    s1 = sentance1;
+                    s2 = _.cloneDeep(sentance2);
+                    
+                    for (var i = 0; i < s1.length; i++) {
+                        for (var j = 0; j < s2.length; j++) {
+                            if (s1[i] === s2[j]) {
+                                s2.splice(j, 1);
+                                break;
+                            }
+                        }
+                    }
+                    return sentance2.length - s2.length;
+                }
+            }
+            //Helper function
+            function findGroupIndexNumber(tableData, currentIndexName) {
+                var groupIndex;
+                _.each(tableData.groupOfIndexes, function(indexGroupElement, index) {
+                    _.each(indexGroupElement.groupItems, function(item) {
+                        if (item.name === currentIndexName) {
+                            groupIndex = index;
+                        }
+                    });
+                });
+                return groupIndex;
+            }
+
             // Check if it as Index or name
             function findIndexPair(extractedWord, tableData, sentances) {
                 var indexPair;
+                
                 var isIndexFound = !_.every(tableData.names, function(data, index) {
                     if (sentances[index] && sentances[index].length === sentances[extractedWord.name].length && isEqualSentances(sentances[index], sentances[extractedWord.name])) {
                         // To break the iteration since index is found
@@ -83,7 +115,8 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
                         if (sentances[index].length === sentances[extractedWord.name].length && isEqualSentances(sentances[index], sentances[extractedWord.name])) {
                             indexPair = {
                                 location: 'indexes',
-                                name: index
+                                name: index,
+                                groupIndex: findGroupIndexNumber(tableData, index)
                             }
                             // To break the iteration since index is found
                             return false;
@@ -94,6 +127,47 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
                     });
                 }
                 return indexPair;
+            }
+            
+            function applyNamesForIndexGroups(tableData, sentances) {
+                _.each(tableData.names, function(name, nameIndex) {
+                    var temp = {count: 0,groupIndexes: []};
+                    _.each(tableData.groupOfIndexes, function(groupOfIndexeElement, groupIndex) {
+                        var indexName = groupOfIndexeElement.groupItems[0].name;
+                        var countOfSimilarSentances = countEqualSentances(sentances[nameIndex], sentances[indexName]);
+                        if (temp.count < countOfSimilarSentances) {
+                            temp.count = countOfSimilarSentances;
+                            temp.groupIndexes = [];
+                            temp.groupIndexes.push(groupIndex);
+                            temp.name = nameIndex;
+                        } else if (temp.count === countOfSimilarSentances) {
+                            temp.name = nameIndex;
+                            temp.groupIndexes.push(groupIndex);
+                        }
+                    });
+                    _.each(temp.groupIndexes, function(groupIndex) {
+                        tableData.groupOfIndexes[groupIndex].groupName.push(temp);
+                    });
+                });
+
+                // filter those names with lower count
+                _.each(tableData.groupOfIndexes, function(groupElement) {
+                    var namesWithMaxCount = [];
+                    
+                    // Sort by count property in desending order
+                    groupElement.groupName.sort(function(a, b) {
+                        return a.count < b.count;
+                    });
+                    
+                    var i = 0, maxCount = groupElement.groupName.length && groupElement.groupName[0];
+                    
+                    // collect the names with the max count. if there are several take them all
+                    while (maxCount === groupElement.groupName[i]){
+                        namesWithMaxCount.push({name: groupElement.groupName[i].name, count: groupElement.groupName[i].count});
+                        i++;
+                    }
+                    groupElement.groupName = namesWithMaxCount; 
+                });
             }
             
             function formatData(tableData) {
@@ -132,7 +206,8 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
                 tableData = {
                     names: {},
                     indexes: {},
-                    formatedData: []
+                    formatedData: [],
+                    groupOfIndexes: []
                 };
                 _.each(words.data, function(el, index) {
                     sortedWords.push({
@@ -154,26 +229,38 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
                 } else {
                     numberOfIteration = sortedWords.length;
                 }
-                
-                while (i < numberOfIteration) {
+               
+               //To Use iteration from config ancomment this
+                //while (i < numberOfIteration) {
                     extractedWord = sortedWords.pop();
+					
+                while (extractedWord.count > 1){
                     var pair = findIndexPair(extractedWord, tableData, sentances);
                     if (pair) {
                         tableData.indexes[extractedWord.name] = extractedWord;
+                        //Location property sho the place where thepair has been found
                         if (pair.location === 'names') {
                             // Move pair from names into the indexes.
                             tableData.indexes[pair.name] = tableData.names[pair.name];
+                            //Add into the group of indexes
+                            tableData.groupOfIndexes.push({groupName: [],groupItems: [extractedWord, tableData.names[pair.name]]});
+                            
                             delete tableData.names[pair.name];
+                        } else {
+                            tableData.groupOfIndexes[pair.groupIndex].groupItems.push(extractedWord);
                         }
                     } else {
                         tableData.names[extractedWord.name] = extractedWord;
                     }
                     
                     i++;
+					extractedWord = sortedWords.pop();
                 }
 
                 // Format Data inside formated Data
                 formatData(tableData);
+                // Find Names for indexGroups
+                applyNamesForIndexGroups(tableData, sentances);
                 
                 return tableData;
             }
@@ -227,3 +314,4 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
         }
     ]);
 });
+            
