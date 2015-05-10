@@ -16,18 +16,41 @@
                     <div ng-class="{throbber:loading}" style="font-size: 5px;"></div>
                 </span> 
             </form>
+            <h4 ng-bind="problemNumber"></h4>
             <div>
                 <word-counter></word-counter>
             </div>
             <div class="row timus-row">
-                <input-analizer></input-analizer>
+                <div ng-click="isInputVisible = !isInputVisible">
+                    <hr>
+                    <h5>Input
+                    <span class="glyphicon" ng-class="{'glyphicon-menu-down': isInputVisible, 'glyphicon-menu-right': !isInputVisible}"></span>
+                    </h5>
+                </div>
+                <input-analizer ng-show="isInputVisible"></input-analizer>
             </div>
 
             <div class="row timus-row">
-                <h4 style="text-align:center;">Output</h4>
-                <output-analizer></output-analizer>
+                <div ng-click="isOutputVisible = !isOutputVisible">
+                    <hr>
+                    <h5>Output
+                    <span class="glyphicon" ng-class="{'glyphicon-menu-down': isOutputVisible, 'glyphicon-menu-right': !isOutputVisible}"></span>
+                    </h5>
+                </div>
+                <output-analizer ng-show="isOutputVisible"></output-analizer>
             </div>
-        
+            
+            <div class="array-problems-analizer">
+                <div ng-click="isArrayProblemListVisible = !isArrayProblemListVisible">
+                    <hr>
+                    <h5>Array Lists
+                    <span class="glyphicon" ng-class="{'glyphicon-menu-down': isArrayProblemListVisible, 'glyphicon-menu-right': !isArrayProblemListVisible}"></span>
+                    </h5>
+                </div>
+                <div ng-include="'app/directives/array-list/array-list.html'" ng-if="!isArrayProblemListVisible">
+                </div>
+            </div>
+
         </div>
         
         <script data-main="app/main" src="node_modules/requirejs/require.js"></script>

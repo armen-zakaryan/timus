@@ -1,0 +1,63 @@
+<div class="">
+    <input placeholder="from" ng-model="from"/>
+    <input placeholder="to" ng-model="to"/>
+    <button type="button" ng-disabled="!(from && to)"class="btn btn-success" ng-click="constructListOfArrayProblems(from, to)"> Get List </button>
+</div>
+<div class="result" ng-show="arrayProblemList">
+
+    <div class="table-data-content">
+      <h2> Array Problem List </h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Problem N</th>
+            <th>Names</th>
+            <th>Indexes</th>
+            <th>--</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in arrayProblemList">
+            <td>
+                {{row.problemNumber}}
+            </td>
+            <td>
+                <div ng-repeat="row1 in row.data.P_S">
+                    <div ng-repeat="rowItem in row1.groupItems">
+                        {{rowItem.name + '(' + rowItem.count +')' }}
+                    </div>
+                </div>
+                <div class="section-all">
+                    <div style="text-allign: center;">all</div>
+                    <div ng-repeat="row1 in row.data.all">
+                        <div ng-repeat="rowItem in row1.groupName">
+                            {{rowItem.name + '(' + rowItem.count +')' }}
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div ng-repeat="row1 in row.data.P_S">
+                    <div ng-repeat="rowItem in row1.groupItems">
+                        {{rowItem.name + '(' + rowItem.count +')' }}
+                    </div>
+                </div>
+                <div class="section-all">
+                    <div style="text-allign: center;">all</div>
+                    <div ng-repeat="row1 in row.data.all">
+                        <div ng-repeat="rowItem in row1.groupItems">
+                            {{rowItem.name + '(' + rowItem.count +')' }}
+                        </div>
+                    </div>
+                </div    
+            </td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+</div>

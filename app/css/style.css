@@ -5,6 +5,9 @@
 .timus-row {
 	margin: 0;
 }
+.timus-row div:first-child{
+	cursor: pointer;
+}
 
 .word-counter {
 	margin-top: 15px;
@@ -137,3 +140,22 @@ export, .table-data-content label, .table-data-content .glyphicon {
 	border: 1px solid green;
 }
 
+.array-problems-analizer input {
+	width: 50px;
+	padding: 0 5px;
+	border: 1px solid #AAA;
+	border-radius: 3px;
+}
+.array-problems-analizer button {
+	margin: 1px;
+	padding: 2px 10px;
+}
+
+.section-all {
+	margin-top: 25px;
+	border-top: 1px solid red;
+}
+.section-all > div:first-child {
+	text-align: center;
+	color: red;
+}

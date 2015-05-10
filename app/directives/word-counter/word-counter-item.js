@@ -1,8 +1,8 @@
 'use strict';
 
 define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], function(angualar, directives, _) {
-    directives.directive('wordCounterItem', ['config', 'PropertyReapeatCounter', 
-        function(config, PropertyReapeatCounter) {
+    directives.directive('wordCounterItem', ['config', 'PropertyReapeatCounter', '$rootScope', 
+        function(config, PropertyReapeatCounter, $rootScope) {
             
             function matchSentanceForEachWord(text, wordsArr) {
                 // Make lower case and replace newlines/line breaks and multy spaces with 1 spaces
@@ -153,20 +153,20 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
                 // filter those names with lower count
                 _.each(tableData.groupOfIndexes, function(groupElement) {
                     var namesWithMaxCount = [];
-                    
+
                     // Sort by count property in desending order
                     groupElement.groupName.sort(function(a, b) {
-                        return a.count < b.count;
+                        return b.count - a.count;
                     });
                     
                     var i = 0, maxCount = groupElement.groupName.length && groupElement.groupName[0];
-                    
+
                     // collect the names with the max count. if there are several take them all
-                    while (maxCount === groupElement.groupName[i]){
-                        namesWithMaxCount.push({name: groupElement.groupName[i].name, count: groupElement.groupName[i].count});
+                    while (maxCount === groupElement.groupName[i]) {
+                        namesWithMaxCount.push({name: groupElement.groupName[i].name,count: groupElement.groupName[i].count});
                         i++;
                     }
-                    groupElement.groupName = namesWithMaxCount; 
+                    groupElement.groupName = namesWithMaxCount;
                 });
             }
             
@@ -229,12 +229,12 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
                 } else {
                     numberOfIteration = sortedWords.length;
                 }
-               
-               //To Use iteration from config ancomment this
+
+                //To Use iteration from config ancomment this
                 //while (i < numberOfIteration) {
-                    extractedWord = sortedWords.pop();
-					
-                while (extractedWord.count > 1){
+                extractedWord = sortedWords.pop();
+                
+                while (extractedWord.count > 2) {
                     var pair = findIndexPair(extractedWord, tableData, sentances);
                     if (pair) {
                         tableData.indexes[extractedWord.name] = extractedWord;
@@ -254,7 +254,7 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
                     }
                     
                     i++;
-					extractedWord = sortedWords.pop();
+                    extractedWord = sortedWords.pop();
                 }
 
                 // Format Data inside formated Data
@@ -285,6 +285,14 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
                             scope.countedWords.filterByKey(1);
                             scope.wordsInSentance = matchSentanceForEachWord(scope.data, scope.countedWords.countFilterByKey(1));
                             scope.arayNameAndIndexAnalizedData = constractArrayIndexNameTable(scope.countedWords, scope.wordsInSentance);
+                            //debugger
+                            if (scope.mode === 'Problem Statement') {
+                                //debugger
+                                $rootScope.$emit('problemStatementDone', scope.arayNameAndIndexAnalizedData)
+                            } 
+                            else if (scope.mode === 'ALL') {
+                                $rootScope.$emit('allDone', scope.arayNameAndIndexAnalizedData)
+                            }
                         }
                     });
                     
@@ -314,4 +322,3 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
         }
     ]);
 });
-            
