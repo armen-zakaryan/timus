@@ -4,6 +4,9 @@ define(['controllers', 'angular', 'services/PageSvc', 'services/ArrayProblemList
             //debugger
             
             $scope.loadPage = function(url) {
+
+
+                   
                 if (url) {
                     if (angular.isNumber(url)) {
                         url = url+'';

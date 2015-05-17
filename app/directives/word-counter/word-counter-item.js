@@ -285,13 +285,12 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
                             scope.countedWords.filterByKey(1);
                             scope.wordsInSentance = matchSentanceForEachWord(scope.data, scope.countedWords.countFilterByKey(1));
                             scope.arayNameAndIndexAnalizedData = constractArrayIndexNameTable(scope.countedWords, scope.wordsInSentance);
-                            //debugger
+                            
                             if (scope.mode === 'Problem Statement') {
-                                //debugger
-                                $rootScope.$emit('problemStatementDone', scope.arayNameAndIndexAnalizedData)
+                                $rootScope.$emit('problemStatementDone', scope.arayNameAndIndexAnalizedData);
                             } 
                             else if (scope.mode === 'ALL') {
-                                $rootScope.$emit('allDone', scope.arayNameAndIndexAnalizedData)
+                                $rootScope.$emit('allDone', scope.arayNameAndIndexAnalizedData);
                             }
                         }
                     });

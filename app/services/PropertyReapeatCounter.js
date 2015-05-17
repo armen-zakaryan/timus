@@ -7,7 +7,7 @@ define(['factories', 'lodash'], function(factories, _) {
             function PropertyReapeatCounter(txt, ignoredElements, mode) {
 
                 // remove line breaks and uppercase characters make lower case
-                var text = txt.toLowerCase().replace(/(\r\n|\n|\r)/gm, " "), 
+                var text = txt.toLowerCase().replace(/(\r\n|\n|\r)/gm, " "),
                 splitedText, 
                 self = this;
                 this.data = {};
@@ -92,6 +92,9 @@ define(['factories', 'lodash'], function(factories, _) {
                 _.each(ignoredElements, function(ignoredElement) {
                     text = text.replace(new RegExp(ignoredElement, 'g'), ' ');
                 });
+
+                // Remove all numbers
+                text = text.replace(/ \d+ /gm, " ")
                 
                 splitedText = text.split(/[\s\.\"\(\),]+/);
                 _.each(splitedText, function(element) {

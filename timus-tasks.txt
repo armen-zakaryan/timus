@@ -1,0 +1,54 @@
+2001, 1581,    - present as array
+
+/********* 2 *********/
+
+1. 1409     +(contain Indexes)   Harry/Larry                    +++ both are integers
+2. 1573     +(contain Indexes)   Red/Blue/Yellow				+++ all are integers
+3. 1572     +(contain Indexes)   Square/Circle/Triangle 		   ----     circle -> 1, a square -> 2, and a triangle -> 3
+4. 1993     +(contain Indexes)   Subject/Verb/Object              ----   ?
+5. 1243	    +(contain Indexes)   White/Snow                       +++ integer ??
+6. 1196	    +(contain Indexes)   Dates/List
+7. 1804     +(contain Indexes)   Score/Goals
+8. 1585     +(contain Indexes)   emperor/macaroni/little
+
+
+1639    +(contain Indexes) Player/take ??? 
+1263    ??????  contain something
+2001    ++- ????
+
+1581    ++-
+1224    ---
+1290    ---
+1612    ---
+1788    --- 
+1881 	---
+
+Also arrays 1501, 1511, 1517
+
+
+
+
+
+new
+TODO  in section problem remove "INPUT OUTPUT Words"
+1585  remove   ->  "        ++++++++++++++++ done
+
+remove + th, st,  first, second,  '...' 
+
+number of iterations until 3 inclusive.
+
+grouping table 
+
+
+/////////////
+.(imp)  remove all  numbers from left sight 
+.(imp)  remove all nubers "zero one two three etc" + million , thousend, billion  + about
+
+.  1517  kasim and tahir should go inside indexes
+
+.  filter expression  from indexes.
+
+1503 and 2004 not working ???
+
+
+

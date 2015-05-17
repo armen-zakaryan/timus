@@ -150,6 +150,9 @@ export, .table-data-content label, .table-data-content .glyphicon {
 	margin: 1px;
 	padding: 2px 10px;
 }
+.array-problems-analizer div:first-child {
+	cursor: pointer;
+}
 
 .section-all {
 	margin-top: 25px;
