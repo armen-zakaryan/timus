@@ -37,6 +37,9 @@ define(['angular', 'directives', 'jquery', 'lodash', 'services/ArrayFinderSvc', 
                             varName;
 
                         _.each(arr, function (element, index) {
+                            // remove all line breaks
+                            element = element.replace(/(\r\n|\n|\r)/gm,"");
+
                             element.match(/([A-Za-z](\d+)?(,)?(\s)?)+/)[0].split(',')
 
                             varName = element.match(/([A-Za-z](\d+)?(,)?(\s)?)+/);

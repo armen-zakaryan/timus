@@ -4,6 +4,7 @@ define([], function() {
     return {
         DEVELOPMENT: {
             INDEXES_NAMES: 10, //12,
+            INDEXES_ITERATION_LOWER_BOUND: 3,
             timus_base_url: 'http://acm.timus.ru/problem.aspx?space=1&num=',
             timus_default: 1573, //1572, //1348, //1567, //1401, 1409 2001
             possibleTypes: ['string', 'integer', 'double', 'word'],

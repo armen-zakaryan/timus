@@ -234,7 +234,7 @@ define(['angular', 'directives', 'lodash', 'services/PropertyReapeatCounter'], f
                 //while (i < numberOfIteration) {
                 extractedWord = sortedWords.pop();
                 
-                while (extractedWord.count > 2) {
+                while (extractedWord.count >= config.INDEXES_ITERATION_LOWER_BOUND) {
                     var pair = findIndexPair(extractedWord, tableData, sentances);
                     if (pair) {
                         tableData.indexes[extractedWord.name] = extractedWord;
